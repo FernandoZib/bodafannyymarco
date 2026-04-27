@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fanny & Marco · Boda 08.08.2026</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       SOBRE DE APERTURA
+  ════════════════════════════════════════════ -->
+  <div id="envelope-screen">
+    <div class="env-petals">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+    <div class="envelope" id="envelope">
+      <!-- Tapa superior -->
+      <div class="env-flap top-flap" id="topFlap"></div>
+      <!-- Cuerpo -->
+      <div class="env-body">
+        <!-- Broche / botón -->
+        <button class="brooch" id="openBtn" aria-label="Abrir invitación">
+          <span class="brooch-ring"></span>
+          <span class="brooch-initials">F&amp;M</span>
+          <span class="brooch-shine"></span>
+        </button>
+        <p class="env-hint">Presiona para abrir</p>
+      </div>
+      <!-- Solapas laterales -->
+      <div class="env-flap left-flap"></div>
+      <div class="env-flap right-flap"></div>
+      <!-- Tapa inferior -->
+      <div class="env-flap bottom-flap"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       INVITACIÓN PRINCIPAL
+  ════════════════════════════════════════════ -->
+  <main id="invitation" class="hidden">
+
+    <!-- Partículas flotantes -->
+    <div class="particles" id="particles"></div>
+
+    <!-- ── HERO ─────────────────────────────── -->
+    <section class="hero" id="hero">
+      <div class="hero-ornament top"></div>
+      <p class="hero-pre reveal">Nos complace invitarte a nuestra boda</p>
+      <h1 class="hero-names reveal">
+        <span class="name-bride">Fanny</span>
+        <span class="ampersand">&amp;</span>
+        <span class="name-groom">Marco</span>
+      </h1>
+      <div class="hero-divider reveal">
+        <span></span><i class="fa-solid fa-heart"></i><span></span>
+      </div>
+      <p class="hero-date reveal">Sábado · 8 de Agosto de 2026</p>
+      <div class="hero-verse reveal">
+        <p class="verse-text">"…A dondequiera que tú vayas, yo iré;<br>y dondequiera que tú vivas, yo viviré…"</p>
+        <p class="verse-ref">Rut 1:16–17</p>
+      </div>
+      <div class="scroll-indicator">
+        <span></span>
+        <p>Desliza para descubrir</p>
+      </div>
+    </section>
+
+    <!-- ── BIENVENIDA ─────────────────────────── -->
+    <section class="section welcome-section" id="welcome">
+      <div class="section-inner">
+        <div class="corner-ornament tl"></div>
+        <div class="corner-ornament tr"></div>
+        <div class="corner-ornament bl"></div>
+        <div class="corner-ornament br"></div>
+        <p class="section-tag reveal">Con la gracia de Dios</p>
+        <h2 class="section-title reveal">Una historia de amor</h2>
+        <p class="welcome-text reveal">
+          Fanny Guadalupe Oxte Kumul<br>
+          <span class="amp-small">&amp;</span><br>
+          Marco Antonio González Canul
+        </p>
+        <p class="welcome-sub reveal">
+          tienen el honor de invitarte a compartir el día más especial de sus vidas,<br>
+          uniendo sus caminos ante Dios y ante todos ustedes.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── PADRES Y PADRINOS ─────────────────── -->
+    <section class="section family-section" id="family">
+      <div class="section-inner">
+        <p class="section-tag reveal">Con amor y gratitud</p>
+        <h2 class="section-title reveal">Familia</h2>
+        <div class="family-grid">
+          <div class="family-card reveal">
+            <div class="family-icon"><i class="fa-solid fa-dove"></i></div>
+            <h3>Padres del Novio</h3>
+            <p>Ana Maricela Canul Maglah</p>
+            <p>&amp;</p>
+            <p>Patricio González de la Cruz</p>
+          </div>
+          <div class="family-card reveal">
+            <div class="family-icon"><i class="fa-solid fa-dove"></i></div>
+            <h3>Padres de la Novia</h3>
+            <p>Fabián Oxte Couoh</p>
+            <p>&amp;</p>
+            <p>Rita Fany Kumul Canul</p>
+          </div>
+          <div class="family-card padrinos reveal">
+            <div class="family-icon"><i class="fa-solid fa-star"></i></div>
+            <h3>Padrinos</h3>
+            <p>Astroberto Canul Maglah</p>
+            <p>&amp;</p>
+            <p>Elba Margarita Ek Pech</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── GALERÍA / CARRUSEL ─────────────────── -->
+    <section class="section gallery-section" id="gallery">
+      <div class="section-inner">
+        <p class="section-tag reveal">Nuestros momentos</p>
+        <h2 class="section-title reveal">Galería</h2>
+        <div class="carousel-container reveal">
+          <div class="carousel-track" id="carouselTrack">
+            <!-- Agrega tus imágenes aquí: cambia src="foto1.jpg" por tus archivos -->
+            <div class="carousel-slide">
+              <div class="photo-placeholder">
+                <i class="fa-solid fa-camera"></i>
+                <p>Foto 1</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="photo-placeholder">
+                <i class="fa-solid fa-camera"></i>
+                <p>Foto 2</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="photo-placeholder">
+                <i class="fa-solid fa-camera"></i>
+                <p>Foto 3</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="photo-placeholder">
+                <i class="fa-solid fa-camera"></i>
+                <p>Foto 4</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="photo-placeholder">
+                <i class="fa-solid fa-camera"></i>
+                <p>Foto 5</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+          <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+        <p class="gallery-note reveal">* Sustituye los marcadores con tus fotos favoritas en el archivo HTML</p>
+      </div>
+    </section>
+
+    <!-- ── CONTADOR REGRESIVO ─────────────────── -->
+    <section class="section countdown-section" id="countdown">
+      <div class="countdown-bg"></div>
+      <div class="section-inner">
+        <p class="section-tag light reveal">Faltan exactamente…</p>
+        <h2 class="section-title light reveal">Cuenta Regresiva</h2>
+        <div class="countdown-grid reveal">
+          <div class="countdown-box">
+            <span class="countdown-num" id="cdDays">00</span>
+            <span class="countdown-label">Días</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-box">
+            <span class="countdown-num" id="cdHours">00</span>
+            <span class="countdown-label">Horas</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-box">
+            <span class="countdown-num" id="cdMins">00</span>
+            <span class="countdown-label">Minutos</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-box">
+            <span class="countdown-num" id="cdSecs">00</span>
+            <span class="countdown-label">Segundos</span>
+          </div>
+        </div>
+        <p class="countdown-date reveal">8 · 08 · 2026</p>
+      </div>
+    </section>
+
+    <!-- ── ITINERARIO ─────────────────────────── -->
+    <section class="section itinerary-section" id="itinerary">
+      <div class="section-inner">
+        <p class="section-tag reveal">El gran día</p>
+        <h2 class="section-title reveal">Itinerario</h2>
+        <div class="timeline">
+          <div class="tl-item reveal">
+            <div class="tl-time">12:00 pm</div>
+            <div class="tl-dot"><i class="fa-solid fa-church"></i></div>
+            <div class="tl-content">
+              <h3>Ceremonia Religiosa</h3>
+              <p>Parroquia San Miguel Arcángel</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-time">1:30 pm</div>
+            <div class="tl-dot"><i class="fa-solid fa-camera"></i></div>
+            <div class="tl-content">
+              <h3>Sesión de Fotos</h3>
+              <p>Capturando los mejores momentos</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-time">2:30 pm</div>
+            <div class="tl-dot"><i class="fa-solid fa-glass-cheers"></i></div>
+            <div class="tl-content">
+              <h3>Recepción de Invitados</h3>
+              <p>Rancho San Luis</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-time">3:30 pm</div>
+            <div class="tl-dot"><i class="fa-solid fa-utensils"></i></div>
+            <div class="tl-content">
+              <h3>Almuerzo</h3>
+              <p>Banquete para celebrar</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-time">4:00 pm</div>
+            <div class="tl-dot"><i class="fa-solid fa-music"></i></div>
+            <div class="tl-content">
+              <h3>Baile</h3>
+              <p>¡A disfrutar la música!</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-time">4:30 pm</div>
+            <div class="tl-dot"><i class="fa-solid fa-cake-candles"></i></div>
+            <div class="tl-content">
+              <h3>Pastel</h3>
+              <p>El dulce momento de la celebración</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-time">∞</div>
+            <div class="tl-dot"><i class="fa-solid fa-star"></i></div>
+            <div class="tl-content">
+              <h3>Final de la Fiesta</h3>
+              <p>¡Hasta que el cuerpo aguante!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LUGARES ────────────────────────────── -->
+    <section class="section venues-section" id="venues">
+      <div class="section-inner">
+        <p class="section-tag reveal">Te esperamos en</p>
+        <h2 class="section-title reveal">Lugares del Evento</h2>
+        <div class="venues-grid">
+          <div class="venue-card reveal">
+            <div class="venue-icon"><i class="fa-solid fa-church"></i></div>
+            <h3>Ceremonia Religiosa</h3>
+            <p>Parroquia San Miguel Arcángel</p>
+            <p class="venue-location"><i class="fa-solid fa-map-marker-alt"></i> Las Rosas, Chiapas</p>
+            <p class="venue-hour"><i class="fa-regular fa-clock"></i> 12:00 pm</p>
+            <a href="https://maps.app.goo.gl/GRY5f8VdRjoztnrc8?g_st=ac" target="_blank" class="venue-btn">
+              <i class="fa-solid fa-map"></i> Ver en Google Maps
+            </a>
+          </div>
+          <div class="venue-card reveal">
+            <div class="venue-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+            <h3>Recepción</h3>
+            <p>Rancho San Luis</p>
+            <p class="venue-location"><i class="fa-solid fa-map-marker-alt"></i> Las Rosas, Chiapas</p>
+            <p class="venue-hour"><i class="fa-regular fa-clock"></i> 2:30 pm</p>
+            <a href="https://maps.app.goo.gl/5Q9i21n5sZSUtk4q8?g_st=ac" target="_blank" class="venue-btn">
+              <i class="fa-solid fa-map"></i> Ver en Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CÓDIGO DE VESTIMENTA ───────────────── -->
+    <section class="section dresscode-section" id="dresscode">
+      <div class="section-inner">
+        <p class="section-tag reveal">Te pedimos asistir con</p>
+        <h2 class="section-title reveal">Código de Vestimenta</h2>
+        <p class="dresscode-tag reveal">Formal · No Smoking</p>
+        <div class="dresscode-grid reveal">
+          <div class="dresscode-card">
+            <!-- Ilustración hombre con sombrero -->
+            <div class="dc-figure male">
+              <svg viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Sombrero -->
+                <ellipse cx="60" cy="42" rx="36" ry="8" fill="#3a1a1a"/>
+                <rect x="34" y="18" width="52" height="26" rx="8" fill="#3a1a1a"/>
+                <rect x="26" y="40" width="68" height="6" rx="3" fill="#5D2B2A"/>
+                <!-- Cabeza -->
+                <circle cx="60" cy="62" r="18" fill="#f5d5b0"/>
+                <!-- Cuerpo / traje -->
+                <rect x="38" y="82" width="44" height="58" rx="4" fill="#2a1010"/>
+                <!-- Corbata -->
+                <polygon points="60,84 55,100 60,106 65,100" fill="#8B2020"/>
+                <!-- Camisa blanca -->
+                <rect x="53" y="82" width="14" height="20" rx="2" fill="#fff"/>
+                <!-- Pantalón -->
+                <rect x="38" y="136" width="20" height="50" rx="3" fill="#2a1010"/>
+                <rect x="62" y="136" width="20" height="50" rx="3" fill="#2a1010"/>
+                <!-- Zapatos -->
+                <ellipse cx="48" cy="186" rx="14" ry="6" fill="#1a0808"/>
+                <ellipse cx="72" cy="186" rx="14" ry="6" fill="#1a0808"/>
+                <!-- Brazos -->
+                <rect x="18" y="84" width="20" height="44" rx="8" fill="#2a1010"/>
+                <rect x="82" y="84" width="20" height="44" rx="8" fill="#2a1010"/>
+                <!-- Manos -->
+                <circle cx="28" cy="130" r="8" fill="#f5d5b0"/>
+                <circle cx="92" cy="130" r="8" fill="#f5d5b0"/>
+              </svg>
+            </div>
+            <p class="dc-label">Caballeros</p>
+            <p class="dc-desc">Traje formal con sombrero elegante</p>
+          </div>
+          <div class="dresscode-card">
+            <!-- Ilustración dama con vestido -->
+            <div class="dc-figure female">
+              <svg viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Cabello -->
+                <ellipse cx="60" cy="44" rx="22" ry="24" fill="#3a1a1a"/>
+                <ellipse cx="60" cy="38" rx="16" ry="18" fill="#3a1a1a"/>
+                <!-- Cabeza -->
+                <circle cx="60" cy="52" r="18" fill="#f5d5b0"/>
+                <!-- Flor en cabello -->
+                <circle cx="78" cy="34" r="6" fill="#8B2020" opacity="0.8"/>
+                <circle cx="76" cy="29" r="4" fill="#c44"/>
+                <!-- Cuerpo / vestido -->
+                <rect x="44" y="72" width="32" height="30" rx="4" fill="#7a2020"/>
+                <!-- Falda del vestido -->
+                <path d="M36,102 Q60,96 84,102 L94,186 H26 Z" fill="#8B2020"/>
+                <!-- Detalle falda -->
+                <path d="M36,130 Q60,124 84,130" stroke="#c44" stroke-width="2" fill="none"/>
+                <path d="M30,158 Q60,150 90,158" stroke="#c44" stroke-width="2" fill="none"/>
+                <!-- Brazos -->
+                <rect x="24" y="74" width="20" height="36" rx="8" fill="#7a2020"/>
+                <rect x="76" y="74" width="20" height="36" rx="8" fill="#7a2020"/>
+                <!-- Manos -->
+                <circle cx="34" cy="112" r="8" fill="#f5d5b0"/>
+                <circle cx="86" cy="112" r="8" fill="#f5d5b0"/>
+                <!-- Zapatos -->
+                <ellipse cx="44" cy="188" rx="10" ry="5" fill="#3a1a1a"/>
+                <ellipse cx="76" cy="188" rx="10" ry="5" fill="#3a1a1a"/>
+              </svg>
+            </div>
+            <p class="dc-label">Damas</p>
+            <p class="dc-desc">Vestido elegante de gala</p>
+          </div>
+        </div>
+        <p class="dresscode-note reveal">
+          <i class="fa-solid fa-circle-info"></i>
+          Agradecemos evitar el blanco y el marfil en respeto a la novia
+        </p>
+      </div>
+    </section>
+
+    <!-- ── HOSPEDAJE ──────────────────────────── -->
+    <section class="section hotel-section" id="hotels">
+      <div class="section-inner">
+        <p class="section-tag reveal">Para tu comodidad</p>
+        <h2 class="section-title reveal">Sugerencias de Hospedaje</h2>
+        <p class="hotel-intro reveal">
+          Te recomendamos hospedarte en el poblado de <strong>Las Rosas, Chiapas</strong>,
+          cerca de los lugares del evento. Algunas opciones cercanas:
+        </p>
+        <div class="hotel-grid">
+          <div class="hotel-card reveal">
+            <div class="hotel-icon"><i class="fa-solid fa-hotel"></i></div>
+            <h3>Hoteles en Las Rosas</h3>
+            <p>Busca hospedaje directamente en el municipio de Las Rosas para mayor cercanía.</p>
+            <a href="https://www.google.com/maps/search/hoteles+Las+Rosas+Chiapas" target="_blank" class="venue-btn">
+              <i class="fa-solid fa-magnifying-glass"></i> Buscar Hoteles
+            </a>
+          </div>
+          <div class="hotel-card reveal">
+            <div class="hotel-icon"><i class="fa-brands fa-airbnb"></i></div>
+            <h3>Airbnb &amp; Rentas</h3>
+            <p>También puedes encontrar casas y departamentos en renta por noche en la zona.</p>
+            <a href="https://www.airbnb.com.mx/s/Las-Rosas--Chiapas/homes" target="_blank" class="venue-btn">
+              <i class="fa-solid fa-house"></i> Ver Opciones
+            </a>
+          </div>
+          <div class="hotel-card reveal">
+            <div class="hotel-icon"><i class="fa-solid fa-bed"></i></div>
+            <h3>Booking.com</h3>
+            <p>Consulta disponibilidad y precios para la fecha del evento en toda la región.</p>
+            <a href="https://www.booking.com/searchresults.es.html?ss=Las+Rosas%2C+Chiapas" target="_blank" class="venue-btn">
+              <i class="fa-solid fa-calendar-check"></i> Ver Disponibilidad
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MESA DE REGALOS ────────────────────── -->
+    <section class="section gifts-section" id="gifts">
+      <div class="gifts-bg"></div>
+      <div class="section-inner">
+        <p class="section-tag light reveal">Con todo nuestro amor</p>
+        <h2 class="section-title light reveal">Mesa de Regalos</h2>
+        <div class="gifts-content reveal">
+          <div class="gift-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <p class="gift-text">
+            Contar con tu presencia es nuestro mayor regalo.
+          </p>
+          <p class="gift-sub">
+            Sin embargo, si deseas tener algún detalle con nosotros,
+            agradeceremos sea en un sobre con mucho cariño. 💛
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CIERRE ──────────────────────────────── -->
+    <section class="section closing-section" id="closing">
+      <div class="section-inner">
+        <div class="closing-ornament reveal">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <h2 class="closing-quote reveal">
+          "Acompáñanos a hacer de este día<br>un recuerdo eterno."
+        </h2>
+        <p class="closing-sub reveal">¡Te esperamos!</p>
+        <div class="closing-names reveal">
+          <span>Fanny</span>
+          <i class="fa-solid fa-heart small-heart"></i>
+          <span>Marco</span>
+        </div>
+        <p class="closing-date reveal">08 · 08 · 2026</p>
+        <div class="hero-divider reveal">
+          <span></span><i class="fa-solid fa-ring"></i><span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Botón flotante música -->
+    <button class="music-btn" id="musicBtn" title="Música" aria-label="Reproducir música">
+      <i class="fa-solid fa-music" id="musicIcon"></i>
+    </button>
+
+    <!-- Audio - añade tu archivo de música aquí -->
+    <audio id="weddingMusic" loop>
+      <!-- Cambia el src por la ruta de tu archivo de música -->
+      <source src="musica.mp3" type="audio/mpeg" />
+    </audio>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
