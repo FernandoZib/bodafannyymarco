@@ -34,6 +34,12 @@ body {
   line-height: 1.7;
 }
 
+.bordes {
+  border-style: solid;
+  border-color: var(--crimson-dk);
+  border-radius: 8%;
+}
+
 /* ═══════════════════════════════════════════
    SOBRE / ENVELOPE SCREEN
 ════════════════════════════════════════════ */
