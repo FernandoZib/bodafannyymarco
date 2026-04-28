@@ -861,7 +861,7 @@ body {
 
 /* ── VESTIMENTA ────────────────────────────── */
 .dresscode-section {
-  background: var(--white);
+  background: var(--cream-dk);
 }
 .dresscode-tag {
   font-family: var(--font-display);
