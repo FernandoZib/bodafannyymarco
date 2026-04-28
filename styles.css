@@ -40,6 +40,12 @@ body {
   border-radius: 8%;
 }
 
+.separador{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 /* ═══════════════════════════════════════════
    SOBRE / ENVELOPE SCREEN
@@ -789,6 +795,7 @@ body {
 /* ── LUGARES ───────────────────────────────── */
 .venues-section {
   background: linear-gradient(180deg, var(--crimson-dk) 0%, var(--crimson-dk) 100%);
+  margin-top: -50px;
 }
 .venues-grid {
   display: grid;
@@ -798,6 +805,7 @@ body {
 .venue-card {
   background: var(--white);
   border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 50px;
   padding: 40px 28px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
