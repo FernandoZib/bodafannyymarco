@@ -518,9 +518,11 @@ body {
 }
 
 /* ── FAMILIA ───────────────────────────────── */
-.family-section {
-  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dk) 100%);
+.family-section {  
+  background: url('galeria/familia.webp') center/cover no-repeat;  
 }
+
+
 .family-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -528,7 +530,7 @@ body {
   margin-top: 10px;
 }
 .family-card {
-  background: var(--white);
+  background-color: rgba(255, 255, 255, 0.5); ;    
   border: 1px solid rgba(201,168,76,0.25);
   padding: 36px 24px;
   position: relative;
@@ -538,9 +540,8 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(93,43,42,0.12);
 }
-.family-card.padrinos {
-  background: linear-gradient(160deg, #FAF6EF, #FFF8E8);
-  border-color: rgba(201,168,76,0.5);
+.family-card.padrinos {  
+  background-color: rgba(255, 255, 228, 0.5);   
 }
 .family-icon {
   width: 48px;
@@ -552,17 +553,17 @@ body {
   justify-content: center;
   margin: 0 auto 16px;
   color: var(--gold-lt);
-  font-size: 1.1rem;
+  font-size: 1.5rem;
 }
 .family-card h3 {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   color: var(--crimson-dk);
   margin-bottom: 12px;
   font-weight: 600;
 }
 .family-card p {
-  font-size: 0.95rem;
+  font-size: 1.3rem;
   color: #5a3838;
   line-height: 1.6;
 }
