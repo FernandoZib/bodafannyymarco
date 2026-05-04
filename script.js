@@ -1,564 +1,293 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="sello.png" type="image/webp">
-  <title>Fanny & Marco - 08.08.2026</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Eagle+Lake&family=Great+Vibes&family=IM+Fell+Great+Primer&family=Xanh+Mono:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+/* ═══════════════════════════════════════════
+   INVITACIÓN FANNY & MARCO · script.js
+════════════════════════════════════════════ */
 
+document.addEventListener('DOMContentLoaded', () => {
 
-<!-- Open Graph Meta Tags for WhatsApp and social preview -->
-<meta property="og:title" content="¡Estás invitado a nuestra boda! - Fanny & Marco"/>
-<meta property="og:description" content="Acompáñanos el 08 de agosto de 2026 en este día tan especial. ¡Te esperamos!" />
-<meta property="og:image" content="https://nuestrabodafannyymarco.netlify.app/previewr.webp" />
-<meta property="og:image:type" content="image/webp" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://nuestrabodafannyymarco.netlify.app/" />
-<meta property="og:type" content="website" />
+  /* ─────────────────────────────────────────
+     1. SOBRE / ENVELOPE
+  ───────────────────────────────────────── */
+  const openBtn        = document.getElementById('openBtn');
+  const topFlap        = document.getElementById('topFlap');
+  const envelopeScreen = document.getElementById('envelope-screen');
+  const invitation     = document.getElementById('invitation');
+  const weddingMusic   = document.getElementById('weddingMusic');
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://nuestrabodafannyymarco.netlify.app/previewr.webp" />
+  openBtn.addEventListener('click', () => {
+    // 1) Abrir tapa
+    topFlap.classList.add('open');
 
+    // 2) Intentar reproducir música
+    weddingMusic.play().catch(() => {
+      // El navegador puede bloquear el autoplay; el usuario puede activarla con el botón flotante
+    });
 
+    // 3) Animar sobre hacia arriba y desaparecer
+    setTimeout(() => {
+      envelopeScreen.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+      envelopeScreen.style.transform  = 'translateY(-100%)';
+      envelopeScreen.style.opacity    = '0';
+    }, 700);
 
-</head>
-<body>
+    // 4) Mostrar invitación
+    setTimeout(() => {
+      envelopeScreen.classList.add('hide');
+      invitation.classList.remove('hidden');
+      invitation.classList.add('visible');
+      document.body.style.overflowY = 'auto';
+      createParticles();
+      initReveal();
+    }, 1500);
+  });
 
-  <!-- ═══════════════════════════════════════════
-       SOBRE DE APERTURA
-  ════════════════════════════════════════════ -->
-  <div id="envelope-screen">
-    <div class="env-petals">
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span>
-    </div>
-    <div class="envelope" id="envelope">
-      <!-- Tapa superior -->
-      <div class="env-flap top-flap" id="topFlap"></div>
-      <!-- Cuerpo -->
-      <div class="env-body">
-        <!-- Broche / botón -->
-        <button class="brooch" id="openBtn" aria-label="Abrir invitación">
-          <span class="brooch-ring"></span>
-          <span class="brooch-initials">F&amp;M</span>
-          <span class="brooch-shine"></span>
-        </button>
-        <p class="env-hint">Presiona para abrir</p>
-      </div>
-      <!-- Solapas laterales -->
-      <div class="env-flap left-flap"></div>
-      <div class="env-flap right-flap"></div>
-      <!-- Tapa inferior -->
-      <div class="env-flap bottom-flap"></div>
-    </div>
-  </div>
+  /* ─────────────────────────────────────────
+     2. PARTÍCULAS FLOTANTES
+  ───────────────────────────────────────── */
+  function createParticles () {
+    const container = document.getElementById('particles');
+    const colors    = ['#8B1A1A', '#C9A84C', '#B84040', '#E8D09A', '#5D2B2A'];
+    const count     = 28;
 
-  <!-- ═══════════════════════════════════════════
-       INVITACIÓN PRINCIPAL
-  ════════════════════════════════════════════ -->
-  <main id="invitation" class="hidden">
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
 
-    <!-- Partículas flotantes -->
-    <div class="particles" id="particles"></div>
+      const size  = Math.random() * 6 + 3;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const left  = Math.random() * 100;
+      const dur   = Math.random() * 15 + 10;
+      const delay = Math.random() * 15;
 
-    <!-- ── HERO ─────────────────────────────── -->
-    <section class="hero" id="hero">            
-      <h2 class="hero-pre reveal" style="font-family: 'EB Garamond', serif;  font-size: 1.8rem; font-weight: 300; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">—08/08/2026—</h2>
-      <h1 class="hero-names reveal">
-        <span class="name-bride">Fanny</span>
-        <span class="ampersand">&amp;</span>
-        <span class="name-groom">Marco</span>
-      </h1>
-      <div class="hero-divider reveal">
-        <span></span><i class="fa-solid fa-heart"></i><span></span>
-      </div>      
-      <br><br><br><br><br><br><br>
-      <div class="hero-verse reveal">
-        <p class="verse-text">"…A dondequiera que tú vayas, yo iré;<br>y dondequiera que tú vivas, yo viviré…"</p>
-        <p class="verse-ref">Rut 1:16–17</p>
-      </div>
-      <div class="scroll-indicator">
-        <span></span>
-        <p>Desliza para descubrir</p>
-      </div>
-    </section>
+      p.style.cssText = `
+        width:${size}px;
+        height:${size}px;
+        left:${left}%;
+        background:${color};
+        animation-duration:${dur}s;
+        animation-delay:-${delay}s;
+        opacity:0;
+      `;
+      container.appendChild(p);
+    }
+  }
 
-    <!-- ── CONTADOR REGRESIVO ─────────────────── -->    
-    <section class="section countdown-section" id="countdown">    
-      <div class="countdown-bg"></div>      
-      <div class="section-inner">
+  /* ─────────────────────────────────────────
+     3. REVEAL ON SCROLL (IntersectionObserver)
+  ───────────────────────────────────────── */
+  function initReveal () {
+    const elements = document.querySelectorAll('.reveal');
 
-        <p class="section-tag light reveal">¡NOS CASAMOS!</p>
-        <h2 class="section-title light reveal">FALTAN</h2>
-        <div class="countdown-grid reveal">
-          <div class="countdown-box">
-            <span class="countdown-num" id="cdDays">00</span>
-            <span class="countdown-label">Días</span>
-          </div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-box">
-            <span class="countdown-num" id="cdHours">00</span>
-            <span class="countdown-label">Horas</span>
-          </div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-box">
-            <span class="countdown-num" id="cdMins">00</span>
-            <span class="countdown-label">Minutos</span>
-          </div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-box">
-            <span class="countdown-num" id="cdSecs">00</span>
-            <span class="countdown-label">Segundos</span>
-          </div>        
-    </section>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Delay escalonado según el índice dentro del mismo bloque
+          const siblings = Array.from(entry.target.parentElement.querySelectorAll('.reveal'));
+          const idx      = siblings.indexOf(entry.target);
+          const delay    = idx * 120;
 
-        <!-- ── GALERÍA / CARRUSEL ─────────────────── -->
-    <section class="section gallery-section" id="gallery">
-      <div class="section-inner">
-        <p class="section-tag reveal">Nuestros momentos</p>
-        <h2 class="section-title reveal" style="font-family: 'Great Vibes', cursive;">Galería</h2>
-        <div class="carousel-container reveal">
-          <div class="carousel-track" id="carouselTrack">
-            <!-- Polaroid 1 – cambia src="foto1.webp" por tu imagen -->
-            <div class="carousel-slide">
-              <div class="polaroid">
-                <div class="photo-placeholder">
-                  <img src="galeria/foto0.webp" class="contenedor">
-                </div>
-                <span class="polaroid-caption">Fanny &amp; Marco</span>
-              </div>
-            </div>
-            <!-- Polaroid 2 -->
-            <div class="carousel-slide">
-              <div class="polaroid">
-                <div class="photo-placeholder">
-                   <img src="galeria/foto1.webp" class="contenedor">
-                </div>
-                <span class="polaroid-caption">08 · 08 · 2026</span>
-              </div>
-            </div>
-            <!-- Polaroid 3 -->
-            <div class="carousel-slide">
-              <div class="polaroid">
-                <div class="photo-placeholder">
-                  <img src="galeria/foto2.webp" class="contenedor">
-                </div>
-                <span class="polaroid-caption">Con amor eterno</span>
-              </div>
-            </div>
-            <!-- Polaroid 3-1 -->
-            <div class="carousel-slide">
-              <div class="polaroid">
-                <div class="photo-placeholder">
-                  <img src="galeria/foto2-1.webp" class="contenedor">
-                </div>
-                <span class="polaroid-caption">Nuestra historia</span>
-              </div>
-            </div>
-            <!-- Polaroid 4 -->
-            <div class="carousel-slide">
-              <div class="polaroid">
-                <div class="photo-placeholder">
-                 <img src="galeria/foto3.webp" class="contenedor">
-                </div>
-                <span class="polaroid-caption">Nuestro día</span>
-              </div>
-            </div>
-            <!-- Polaroid 5 -->
-            <div class="carousel-slide">
-              <div class="polaroid">
-                <div class="photo-placeholder">
-                  <img src="galeria/foto4.webp" class="contenedor">
-                </div>
-                <span class="polaroid-caption">Juntos</span>
-              </div>
-            </div>
-          <!-- Polaroid 6 -->
-          <div class="carousel-slide">
-            <div class="polaroid">
-              <div class="photo-placeholder">
-                <img src="galeria/foto5.webp" class="contenedor">
-              </div>
-              <span class="polaroid-caption">Para siempre</span>
-              </div>
-          </div>   
-          <!-- Polaroid 7 -->
-          <div class="carousel-slide">
-            <div class="polaroid">
-              <div class="photo-placeholder">
-                <img src="galeria/foto6.webp" class="contenedor">
-              </div>
-              <span class="polaroid-caption">08 · 08 · 2026</span>
-              </div>
-          </div>   
-          <!-- Polaroid 8 -->
-          <div class="carousel-slide">
-            <div class="polaroid">
-              <div class="photo-placeholder">
-                <img src="galeria/foto7.webp" class="contenedor">
-              </div>
-              <span class="polaroid-caption">Fanny</span>
-              </div>
-          </div>   
-          <!-- Polaroid 9 -->
-          <div class="carousel-slide">
-            <div class="polaroid">
-              <div class="photo-placeholder">
-                <img src="galeria/foto8.webp" class="contenedor">
-              </div>
-              <span class="polaroid-caption">Marco</span>
-              </div>
-          </div>   
-          <!-- Polaroid 10 -->
-          <div class="carousel-slide">
-            <div class="polaroid">
-              <div class="photo-placeholder">
-                <img src="galeria/foto9.webp" class="contenedor">
-              </div>
-              <span class="polaroid-caption">Uniendo corazones</span>
-              </div>
-          </div>   
-          <!-- Polaroid 11 -->
-          <div class="carousel-slide">
-            <div class="polaroid">
-              <div class="photo-placeholder">
-                <img src="galeria/foto10.webp" class="contenedor">
-              </div>
-              <span class="polaroid-caption">Para ser uno solo</span>
-              </div>
-          </div>   
-          <!-- Polaroid 11-1 -->
-          <div class="carousel-slide">
-            <div class="polaroid">
-              <div class="photo-placeholder">
-                <img src="galeria/foto10-1.webp" class="contenedor">
-              </div>
-              <span class="polaroid-caption">08 · 08 · 2026</span>
-              </div>
-          </div>  
-          <!-- Polaroid 12 -->
-          <div class="carousel-slide">
-            <div class="polaroid">
-              <div class="photo-placeholder">
-                <img src="galeria/foto11.webp" class="contenedor">
-              </div>
-              <span class="polaroid-caption">08 · 08 · 2026</span>
-              </div>
-          </div>  
-          <!-- Polaroid 13 -->
-          <div class="carousel-slide">
-            <div class="polaroid">
-              <div class="photo-placeholder">
-                <img src="galeria/foto12.webp"class="contenedor">
-              </div>
-              <span class="polaroid-caption">08 · 08 · 2026</span>
-              </div>
-          </div> 
-          <!-- Polaroid 14 -->
-          <div class="carousel-slide">
-            <div class="polaroid">
-              <div class="photo-placeholder">
-                <img src="galeria/foto13.webp" class="contenedor">
-              </div>
-              <span class="polaroid-caption">08 · 08 · 2026</span>
-              </div>
-          </div> 
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
 
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-          </div>
-          <br>
+    elements.forEach(el => observer.observe(el));
+  }
 
+  /* ─────────────────────────────────────────
+     4. CONTADOR REGRESIVO
+  ───────────────────────────────────────── */
+  const weddingDate = new Date('2026-08-08T12:00:00');
 
+  function pad (n) { return String(n).padStart(2, '0'); }
 
-          <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-          <div class="carousel-dots" id="carouselDots"></div>
-        </div>
-        <p class="gallery-note reveal">Compartimos nuestra alegría y felicidad contigo</p>
-      </div>
-    </section>
+  function updateCountdown () {
+    const now  = new Date();
+    const diff = weddingDate - now;
 
-    <!-- ── PADRES Y PADRINOS ─────────────────── -->
-    <section class="section family-section" id="family">
-      <div class="section-inner">
-        <p class="section-tag reveal">Con amor y gratitud</p>
-        <h2 class="section-title reveal" style="color: black; font-family: 'Great Vibes', cursive;">Familia</h2>
-        <div class="family-grid">
-          <div class="family-card reveal">
-            <div class="family-icon"><i class="fa-solid fa-dove"></i></div>
-            <h3>Padres del Novio</h3>
-            <p>Ana Maricela Canul Maglah</p>
-            <p>&amp;</p>
-            <p>Patricio González de la Cruz</p>
-          </div>
-          <div class="family-card reveal">
-            <div class="family-icon"><i class="fa-solid fa-dove"></i></div>
-            <h3>Padres de la Novia</h3>
-            <p>Fabián Oxte Couoh</p>
-            <p>&amp;</p>
-            <p>Rita Fany Kumul Canul</p>
-          </div>
-          <div class="family-card padrinos reveal">
-            <div class="family-icon"><i class="fa-solid fa-star"></i></div>
-            <h3>Padrinos</h3>
-            <p>Astroberto Canul Maglah</p>
-            <p>&amp;</p>
-            <p>Elba Margarita Ek Pech</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    if (diff <= 0) {
+      document.getElementById('cdDays').textContent  = '00';
+      document.getElementById('cdHours').textContent = '00';
+      document.getElementById('cdMins').textContent  = '00';
+      document.getElementById('cdSecs').textContent  = '00';
+      return;
+    }
 
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000)  / 60000);
+    const secs  = Math.floor((diff % 60000)    / 1000);
 
-    <!-- ── BIENVENIDA ─────────────────────────── -->
-    <section class="section welcome-section" id="welcome">
-      <img src="flower.webp" width="170px" height="150px" class="separador">      
-      <div class="section-inner">
-        <div class="corner-ornament tl"></div>
-        <div class="corner-ornament tr"></div>
-        <div class="corner-ornament bl"></div>
-        <div class="corner-ornament br"></div>
-        <p class="section-tag reveal">Con la gracia de Dios</p>
-        <h2 class="section-title reveal">Una historia de amor</h2>
-        <p class="welcome-text reveal">
-          Fanny Guadalupe Oxte Kumul<br>
-          <span class="amp-small">&amp;</span><br>
-          Marco Antonio González Canul
-        </p>
-        <p class="welcome-sub reveal">
-          Tenemos el honor de invitarte a compartir el día más especial de nuestras vidas,<br>
-          uniendo nuestros caminos ante Dios y ante todos ustedes.
-        </p>
-      </div>
-    </section>
+    setNum('cdDays',  pad(days));
+    setNum('cdHours', pad(hours));
+    setNum('cdMins',  pad(mins));
+    setNum('cdSecs',  pad(secs));
+  }
 
+  function setNum (id, value) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.textContent !== value) {
+      el.classList.remove('flip');
+      void el.offsetWidth;         // reflow para reiniciar animación
+      el.classList.add('flip');
+      el.textContent = value;
+    }
+  }
 
-    <!-- ── LUGARES ────────────────────────────── -->
-    <section class="section venues-section" id="venues">
-      <div class="section-inner">
-        <p class="section-tag reveal">Te esperamos</p>
-        <h2 class="section-title reveal" style="color: mintcream;">Lugares del Evento</h2>
-        <div class="venues-grid">
-          <div class="venue-card reveal">
-            <div><img src="Ceremonia.jpg" width="270px" height="250px" class="bordes"></div>
-            <h1 style="font-family: 'Great Vibes', cursive; font-size: 3em">Ceremonia</h1>
-            <p>Parroquia San Miguel Arcángel</p>
-            <p class="venue-location"><i class="fa-solid fa-map-marker-alt"></i> Las Rosas, Chiapas</p>
-            <p class="venue-hour"><i class="fa-regular fa-clock"></i> 12:00 pm</p>
-            <a href="https://maps.app.goo.gl/GRY5f8VdRjoztnrc8?g_st=ac" target="_blank" class="venue-btn">
-              <i class="fa-solid fa-map"></i> Ver en Google Maps
-            </a>
-          </div>
-          <img src="separador.png" width="300px" height="40px" class="separador">
-          <div class="venue-card reveal">
-            <div><img src="local.png" width="270px" height="250px" class="bordes"></div>
-            <h1 style="font-family: 'Great Vibes', cursive; font-size: 3em;">Recepción</h1>
-            <p>Rancho San Luis</p>
-            <p class="venue-location"><i class="fa-solid fa-map-marker-alt"></i> Las Rosas, Chiapas</p>
-            <p class="venue-hour"><i class="fa-regular fa-clock"></i> 2:30 pm</p>
-            <a href="https://maps.app.goo.gl/5Q9i21n5sZSUtk4q8?g_st=ac" target="_blank" class="venue-btn">
-              <i class="fa-solid fa-map"></i> Ver en Google Maps
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 
+  /* ─────────────────────────────────────────
+     5. CARRUSEL
+  ───────────────────────────────────────── */
+  const track      = document.getElementById('carouselTrack');
+  const prevBtn    = document.getElementById('prevBtn');
+  const nextBtn    = document.getElementById('nextBtn');
+  const dotsWrap   = document.getElementById('carouselDots');
 
-    <!-- ── ITINERARIO ─────────────────────────── -->
-    <section class="section itinerary-section" id="itinerary">
-      <div class="section-inner">
-        <p class="section-tag reveal">El gran día</p>
-        <h2 class="section-title reveal" style="color: black; font-family: 'Great Vibes', cursive;">Itinerario</h2>
-        <div class="timeline">
-          <div class="tl-item reveal">
-            <div class="tl-time">12:00 pm</div>
-            <div class="tl-dot"><i class="fa-solid fa-church"></i></div>
-            <div class="tl-content">
-              <h3>Ceremonia Religiosa</h3>
-              <p>Parroquia San Miguel Arcángel</p>
-            </div>
-          </div>
-          <div class="tl-item reveal">
-            <div class="tl-time">1:30 pm</div>
-            <div class="tl-dot"><i class="fa-solid fa-camera"></i></div>
-            <div class="tl-content">
-              <h3>Sesión de Fotos</h3>
-              <p>Capturando los mejores momentos</p>
-            </div>
-          </div>
-          <div class="tl-item reveal">
-            <div class="tl-time">2:30 pm</div>
-            <div class="tl-dot"><i class="fa-solid fa-glass-cheers"></i></div>
-            <div class="tl-content">
-              <h3>Recepción de Invitados</h3>
-              <p>Rancho San Luis</p>
-            </div>
-          </div>
-          <div class="tl-item reveal">
-            <div class="tl-time">3:30 pm</div>
-            <div class="tl-dot"><i class="fa-solid fa-utensils"></i></div>
-            <div class="tl-content">
-              <h3>Almuerzo</h3>
-              <p>Banquete para celebrar</p>
-            </div>
-          </div>
-          <div class="tl-item reveal">
-            <div class="tl-time">4:00 pm</div>
-            <div class="tl-dot"><i class="fa-solid fa-music"></i></div>
-            <div class="tl-content">
-              <h3>Baile</h3>
-              <p>¡A disfrutar la música!</p>
-            </div>
-          </div>
-          <div class="tl-item reveal">
-            <div class="tl-time">4:30 pm</div>
-            <div class="tl-dot"><i class="fa-solid fa-cake-candles"></i></div>
-            <div class="tl-content">
-              <h3>Pastel</h3>
-              <p>El dulce momento de la celebración</p>
-            </div>
-          </div>
-          <div class="tl-item reveal">
-            <div class="tl-time">∞</div>
-            <div class="tl-dot"><i class="fa-solid fa-star"></i></div>
-            <div class="tl-content">
-              <h3>Final de la Fiesta</h3>
-              <p>¡Hasta que el cuerpo aguante!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  let currentSlide = 0;
+  let autoTimer    = null;
 
+  function getSlides () { return track ? track.querySelectorAll('.carousel-slide') : []; }
 
-    <!-- ── CÓDIGO DE VESTIMENTA ───────────────── -->
-    <section class="section dresscode-section" id="dresscode">
-      <div class="section-inner">
-        <h2 class="section-title reveal" style="color: mintcream;">Código de Vestimenta</h2>
-        <p class="dresscode-tag reveal">Formal · No Smoking</p>
-        <div class="dresscode-grid reveal">
-          <div class="dresscode-card">
-            <!-- Ilustración hombre con sombrero -->
-            <div>
-              <img src="caballeros.png" width="150px" height="220px">
-            </div>
-            <p class="dc-label">Caballeros</p>
-            <p class="dc-desc">Traje formal con sombrero</p>
-          </div>
-          <div class="dresscode-card">
-            <!-- Ilustración dama con vestido -->
-            <div>
-              <img src="damas.png" width="150px" height="220px">
-            </div>
-            <p class="dc-label">Damas</p>
-            <p class="dc-desc">Vestido elegante</p>
-          </div>
-        </div>
-        <p class="dresscode-note reveal" style="color: mintcream;">
-          <i class="fa-solid fa-circle-info" ></i>
-          Agradecemos evitar el blanco y el marfil en respeto a la novia
-        </p>
-      </div>
-    </section>
+  function buildDots () {
+    if (!dotsWrap) return;
+    dotsWrap.innerHTML = '';
+    getSlides().forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Foto ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+  }
 
-    <!-- ── HOSPEDAJE ──────────────────────────── -->
-    <section class="section hotel-section" id="hotels">
-      <div class="section-inner">
-        <p class="section-tag reveal">Para tu comodidad</p>
-        
-        <p class="hotel-intro reveal">
-          Te recomendamos hospedarte en el poblado de <strong>Las Rosas, Chiapas</strong>,
-          cerca de los lugares del evento.
-        </p>
-        <div class="hotel-grid">
-          <div class="hotel-card reveal">      
-          <h2 class="section-title reveal" style="color: black;">Sugerencias de Hospedaje</h2>      
-            <div><img src="hotel.jpg" width="230px" height="190px"></div>                                                       
-            <a href="https://maps.app.goo.gl/QMp3J3ZT7yPYNCjr6" target="_blank" class="venue-btn">
-              <i class="fa-solid fa-magnifying-glass"></i> Buscar Hoteles
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <div>
-      <video width="400" controls muted autoplay>
-        <source src="video.mp4" type="video/mp4">        
-        <source src="movie.ogg" type="video/ogg">
-        Tu navegador no soporta video.
-      </video>
-    </div>
+  function goTo (index) {
+    const slides = getSlides();
+    if (!slides.length) return;
 
+    currentSlide = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-    <!-- ── MESA DE REGALOS ────────────────────── -->
-    <section class="section gifts-section" id="gifts">
-      <div class="gifts-bg"></div>
-      <div class="section-inner">
-        <p class="section-tag light reveal">Con todo nuestro amor</p>
-        <h2 class="section-title light reveal">Mesa de Regalos</h2>
-        <div class="gifts-content reveal">
-          <div class="gift-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
-          <p class="gift-text">
-            Contar con tu presencia es nuestro mayor regalo.
-          </p>
-          <p class="gift-sub">
-            Sin embargo, si deseas tener algún detalle con nosotros,
-            agradeceremos sea en un sobre con mucho cariño. 💛
-          </p>
-        </div>
-      </div>
-    </section>
+    // Actualizar dots
+    dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentSlide);
+    });
 
-    <!-- ── CIERRE ──────────────────────────────── -->
-    <section class="section closing-section" id="closing">
-      <div class="section-inner">
-        <div class="closing-ornament reveal">
-          <i class="fa-solid fa-heart"></i>
-        </div>
-        <h2 class="closing-quote reveal">
-          "Acompáñanos a hacer de este día<br>un recuerdo eterno."
-        </h2>
-        <p class="closing-sub reveal">¡Te esperamos!</p>
-              <div>
-                <img src="fondof.webp" width="325px" height="235px" class="bordes heartbeat">
-              </div>
-        <div class="closing-names reveal">
-          <span>Fanny</span>
-          <i class="fa-solid fa-heart small-heart"></i>
-          <span>Marco</span>
-        </div>
-        <p class="closing-date reveal">08 · 08 · 2026</p>
-        <div class="hero-divider reveal">
-          <span></span><i class="fa-solid fa-ring"></i><span></span>
-        </div>
-      </div>
-    </section>
+    restartAuto();
+  }
 
-    <!-- Botón flotante música -->
-    <button class="music-btn" id="musicBtn" title="Música" aria-label="Reproducir música">
-      <i class="fa-solid fa-music" id="musicIcon"></i>
-    </button>
+  function restartAuto () {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo(currentSlide + 1), 4500);
+  }
 
-    <!-- Audio - añade tu archivo de música aquí -->
-    <audio id="weddingMusic" loop>
-      <!-- Cambia el src por la ruta de tu archivo de música -->
-      <source src="musica.mp3" type="audio/mpeg" />
-    </audio>
+  if (prevBtn) prevBtn.addEventListener('click', () => goTo(currentSlide - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goTo(currentSlide + 1));
 
-  </main>
+  // Swipe táctil
+  if (track) {
+    let startX = 0;
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) goTo(currentSlide + (dx < 0 ? 1 : -1));
+    });
+  }
 
-  <script src="script.js"></script>
-</body>
-</html>
+  buildDots();
+  restartAuto();
+
+  /* ─────────────────────────────────────────
+     6. BOTÓN DE MÚSICA
+  ───────────────────────────────────────── */
+  const musicBtn  = document.getElementById('musicBtn');
+  const musicIcon = document.getElementById('musicIcon');
+  let   isPlaying = false;
+
+  if (musicBtn) {
+    musicBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        weddingMusic.pause();
+        musicBtn.classList.remove('playing');
+        musicIcon.className = 'fa-solid fa-music';
+        isPlaying = false;
+      } else {
+        weddingMusic.play().then(() => {
+          musicBtn.classList.add('playing');
+          musicIcon.className = 'fa-solid fa-pause';
+          isPlaying = true;
+        }).catch(err => {
+          console.warn('No se pudo reproducir audio:', err);
+        });
+      }
+    });
+  }
+
+  // Sincronizar estado si el audio se reproduce automáticamente desde el sobre
+  weddingMusic.addEventListener('play', () => {
+    isPlaying = true;
+    if (musicBtn) musicBtn.classList.add('playing');
+    if (musicIcon) musicIcon.className = 'fa-solid fa-pause';
+  });
+  weddingMusic.addEventListener('pause', () => {
+    isPlaying = false;
+    if (musicBtn) musicBtn.classList.remove('playing');
+    if (musicIcon) musicIcon.className = 'fa-solid fa-music';
+  });
+
+  /* ─────────────────────────────────────────
+     7. EFECTO PARALLAX SUAVE EN HERO
+  ───────────────────────────────────────── */
+  const hero = document.getElementById('hero');
+  window.addEventListener('scroll', () => {
+    if (!hero) return;
+    const scrolled = window.pageYOffset;
+    hero.style.backgroundPositionY = `${scrolled * 0.3}px`;
+  }, { passive: true });
+
+  /* ─────────────────────────────────────────
+     8. CURSOR PERSONALIZADO (desktop)
+  ───────────────────────────────────────── */
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const cursor = document.createElement('div');
+    cursor.style.cssText = `
+      position: fixed;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(201,168,76,0.7);
+      pointer-events: none;
+      z-index: 99999;
+      transition: transform 0.12s ease, opacity 0.3s;
+      transform: translate(-50%, -50%);
+      top: 0; left: 0;
+    `;
+    document.body.appendChild(cursor);
+
+    let mx = 0, my = 0, cx = 0, cy = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+    });
+
+    function animCursor () {
+      cx += (mx - cx) * 0.18;
+      cy += (my - cy) * 0.18;
+      cursor.style.left = cx + 'px';
+      cursor.style.top  = cy + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+
+    // Hover en links y botones
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%,-50%) scale(1.8)');
+      el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%,-50%) scale(1)');
+    });
+  }
+
+});
