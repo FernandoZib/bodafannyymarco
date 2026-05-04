@@ -34,6 +34,13 @@ body {
   line-height: 1.7;
 }
 
+.contenedor{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
 .bordes {
   border-style: solid;
   border-color: var(--crimson-dk);
@@ -46,6 +53,29 @@ body {
   margin-right: auto;
 }
 
+.heartbeat {
+  /* Animation: name duration timing-function iteration-count */
+  animation: beat 5s ease infinite;
+  display: inline-block;
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 /* ═══════════════════════════════════════════
    SOBRE / ENVELOPE SCREEN
@@ -279,6 +309,7 @@ body {
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 10px;
+
 }
 .section-tag.light { color: var(--gold-lt); }
 .section-title {
@@ -287,7 +318,7 @@ body {
   font-weight: 400;
   color: var(--cream);
   margin-bottom: 40px;
-  line-height: 1.2;
+  line-height: 1.2;  
 }
 .section-title.light { color: var(--cream); }
 
@@ -714,10 +745,11 @@ body {
 
 .gallery-note {
   font-family: var(--font-ui);
-  font-size: 0.68rem;
+  font-size: 1rem;
   color: rgba(201,168,76,0.35);
   letter-spacing: 0.06em;
   margin-top: 12px;
+  font-family: 'Great Vibes', cursive;
 }
 
 /* Responsive: botones de nav para móvil (dentro del contenedor) */
@@ -1109,6 +1141,7 @@ body {
 .hotel-card {
   background: var(--white);
   border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 50px;
   padding: 32px 20px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
