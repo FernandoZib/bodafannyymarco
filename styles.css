@@ -97,8 +97,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at center, #2a0a0a 0%, #0d0304 100%);
+  background: radial-gradient(ellipse at center, #f7f3ee 0%, #e8ddd0 100%);
   transition: opacity 0.8s ease, visibility 0.8s ease;
+  overflow-y: auto;
+  padding: 20px 0;
 }
 
 #envelope-screen.hide {
@@ -139,33 +141,121 @@ body {
   100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
 }
 
-/* Sobre */
+/* ── TARJETA CENTRAL ───────────────────────── */
+.env-card {
+  position: relative;
+  width: min(360px, 92vw);
+  background: #f9f5f0;
+  border-radius: 28px;
+  box-shadow:
+    0 8px 40px rgba(80, 20, 20, 0.18),
+    0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 28px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Flores decorativas arriba */
+.env-flowers-top {
+  width: 100%;
+  margin-bottom: -10px;
+  margin-top: -2px;
+  line-height: 0;
+}
+.env-flowers-top svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Monograma */
+.env-monogram {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #5a1818, #8B1A1A);
+  color: #e8d09a;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 700;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  justify-content: center;
+  letter-spacing: 2px;
+  margin: 8px 0 10px;
+  box-shadow: 0 4px 14px rgba(100, 20, 20, 0.4), 0 0 0 3px #c9a84c, 0 0 0 5px #f9f5f0;
+}
+.mono-amp {
+  font-size: 0.8rem;
+  margin: 0 1px;
+}
+
+/* Textos de invitación */
+.env-invite-pre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: #6a3a3a;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  text-align: center;
+}
+.env-invite-title {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.35em;
+  color: #2a0808;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-align: center;
+}
+.env-names-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2rem, 8vw, 2.6rem);
+  color: #3a0f0f;
+  font-weight: 400;
+  margin-bottom: 14px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ── SOBRE (dentro de la tarjeta) ──────────── */
+.envelope-wrapper {
+  position: relative;
+  width: min(230px, 70vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0;
+}
+
 .envelope {
   position: relative;
-  width: min(380px, 88vw);
-  height: min(280px, 65vw);
-  filter: drop-shadow(0 20px 60px rgba(0,0,0,0.6));
-  transform-style: preserve-3d;
-  perspective: 1000px;
+  width: 100%;
+  height: min(160px, 45vw);
+  filter: drop-shadow(0 10px 28px rgba(80,20,20,0.35));
   animation: envFloat 4s ease-in-out infinite;
 }
 
 @keyframes envFloat {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-12px); }
+  50%       { transform: translateY(-8px); }
 }
 
 /* Flaps */
 .env-flap {
   position: absolute;
-  background: linear-gradient(135deg, #6a1a1a, #8B2020);
-  border: 1px solid rgba(201,168,76,0.3);
 }
 .top-flap {
   top: 0; left: 0; right: 0;
   height: 50%;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
-  background: linear-gradient(180deg, #5D1A1A 0%, #7a2020 100%);
+  background: linear-gradient(180deg, #5a1a1a 0%, #7a2020 100%);
   transform-origin: top center;
   transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
   z-index: 4;
@@ -177,99 +267,193 @@ body {
   top: 0; left: 0;
   width: 50%; height: 100%;
   clip-path: polygon(0 0, 0 100%, 100% 50%);
-  background: linear-gradient(135deg, #7a2020, #5a1818);
+  background: linear-gradient(135deg, #6b1a1a, #511212);
   z-index: 2;
 }
 .right-flap {
   top: 0; right: 0;
   width: 50%; height: 100%;
   clip-path: polygon(100% 0, 100% 100%, 0 50%);
-  background: linear-gradient(225deg, #7a2020, #5a1818);
+  background: linear-gradient(225deg, #6b1a1a, #511212);
   z-index: 2;
 }
 .bottom-flap {
   bottom: 0; left: 0; right: 0;
   height: 50%;
   clip-path: polygon(0 100%, 100% 100%, 50% 0);
-  background: linear-gradient(0deg, #5D1A1A 0%, #6a1a1a 100%);
+  background: linear-gradient(0deg, #4a1212 0%, #6a1a1a 100%);
   z-index: 1;
 }
 
 .env-body {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, #FAF6EF 0%, #F0E8D8 100%);
+  background: linear-gradient(155deg, #7a1e1e 0%, #5a1414 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 10px;
   z-index: 3;
 }
 
-/* Broche */
+.env-open-text {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.2rem;
+  color: rgba(232, 208, 154, 0.85);
+  pointer-events: none;
+}
+
+/* Sello dorado - centrado sobre el sobre */
 .brooch {
-  width: 100px;
-  height: 100px;
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  position: relative;
-  background: radial-gradient(circle at 35% 35%, #E8D09A, #C9A84C 50%, #8B6914);
+  background: radial-gradient(circle at 35% 35%, #f0d882, #C9A84C 50%, #8B6914);
   box-shadow:
-    0 0 0 4px #C9A84C,
-    0 0 0 6px #FAF6EF,
-    0 0 0 8px rgba(201,168,76,0.5),
-    0 8px 24px rgba(0,0,0,0.4),
-    inset 0 2px 6px rgba(255,255,255,0.5);
+    0 0 0 3px #C9A84C,
+    0 0 0 5px #f9f5f0,
+    0 0 0 7px rgba(201,168,76,0.4),
+    0 6px 18px rgba(0,0,0,0.35),
+    inset 0 2px 5px rgba(255,255,255,0.5);
   transition: transform 0.2s, box-shadow 0.2s;
   overflow: hidden;
+  z-index: 10;
 }
 .brooch:hover {
-  transform: scale(1.08);
+  transform: translateX(-50%) scale(1.1);
   box-shadow:
-    0 0 0 4px #E8D09A,
-    0 0 0 8px rgba(201,168,76,0.6),
-    0 12px 32px rgba(0,0,0,0.5),
-    inset 0 2px 6px rgba(255,255,255,0.5);
+    0 0 0 3px #E8D09A,
+    0 0 0 7px rgba(201,168,76,0.6),
+    0 10px 26px rgba(0,0,0,0.45),
+    inset 0 2px 5px rgba(255,255,255,0.5);
 }
-.brooch:active { transform: scale(0.96); }
+.brooch:active { transform: translateX(-50%) scale(0.96); }
 
 .brooch-ring {
   position: absolute;
-  inset: 8px;
+  inset: 7px;
   border-radius: 50%;
-  border: 2px solid rgba(139,105,20,0.5);
+  border: 1.5px solid rgba(139,105,20,0.45);
   background: transparent;
 }
 .brooch-initials {
   position: relative;
   z-index: 2;
-  font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
   font-style: italic;
   font-weight: 700;
-  color: var(--dark);
-  letter-spacing: 2px;
-  text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+  color: #2a0808;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
 }
 .brooch-shine {
   position: absolute;
-  top: 12px; left: 14px;
-  width: 28px; height: 18px;
+  top: 9px; left: 10px;
+  width: 20px; height: 13px;
   background: radial-gradient(ellipse, rgba(255,255,255,0.7) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
 
-.env-hint {
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--crimson-dk);
-  opacity: 0.7;
+/* Flores bajo el sobre */
+.env-flowers-bottom {
+  width: 100%;
+  margin-top: 28px;
+  line-height: 0;
 }
+.env-flowers-bottom svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── FECHA ─────────────────────────────────── */
+.env-date-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  margin-bottom: 2px;
+}
+.env-date-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2a0808;
+  letter-spacing: 0.03em;
+}
+.env-date-sep {
+  color: #8B1A1A;
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+.env-date-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2a0808;
+}
+.env-date-sub {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9a6060;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* ── BOTONES DE ACCIÓN ─────────────────────── */
+.env-action-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 0 16px;
+}
+.env-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  color: #2a0808;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+  line-height: 1.3;
+  max-width: 80px;
+  transition: transform 0.2s;
+}
+.env-action-btn:hover { transform: translateY(-3px); }
+.env-btn-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5a1818, #8B1A1A);
+  color: #e8d09a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 14px rgba(80,20,20,0.35);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.env-action-btn:hover .env-btn-icon {
+  box-shadow: 0 7px 20px rgba(80,20,20,0.5);
+}
+
+
 
 /* ═══════════════════════════════════════════
    INVITACIÓN PRINCIPAL
