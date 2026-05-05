@@ -222,7 +222,7 @@ body {
   text-align: center;
 }
 .env-names-script {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Georgia', serif;
   font-size: clamp(2rem, 8vw, 2.6rem);
   color: #3a0f0f;
   font-weight: 400;
