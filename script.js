@@ -35,14 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
       invitation.classList.remove('hidden');
       invitation.classList.add('visible');
       document.body.style.overflowY = 'auto';
-      createParticles();
+      //createParticles();
       initReveal();
     }, 1500);
   });
 
-  /* ─────────────────────────────────────────
+/*   ─────────────────────────────────────────
      2. PARTÍCULAS FLOTANTES
-  ───────────────────────────────────────── */
+  ───────────────────────────────────────── 
   function createParticles () {
     const container = document.getElementById('particles');
     const colors    = ['#8B1A1A', '#C9A84C', '#B84040', '#E8D09A', '#5D2B2A'];
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       container.appendChild(p);
     }
   }
-
+*/
   /* ─────────────────────────────────────────
      3. REVEAL ON SCROLL (IntersectionObserver)
   ───────────────────────────────────────── */
