@@ -3,7 +3,7 @@
 ════════════════════════════════════════════ */
 :root {
   --crimson:    #8B1A1A;
-  --crimson-dk: #5D2B2A;
+  --crimson-dk: #722F37;
   --crimson-lt: #B84040;
   --gold:       #C9A84C;
   --gold-lt:    #E8D09A;
@@ -1139,22 +1139,22 @@ body {
 
 /* ── HOSPEDAJE ─────────────────────────────── */
 .hotel-section {
-  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dk) 100%);
+  background: var(--crimson-dk) ;
 }
 .hotel-intro {
   font-size: 1.5rem;
-  color: #5a3838;
+  color: var(--cream);
   margin-bottom: 36px;
   line-height: 1.8;
 }
-.hotel-intro strong { color: var(--crimson-dk); }
+.hotel-intro strong { color: var(--cream-dk); }
 .hotel-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 24px;
 }
 .hotel-card {
-  background: var(--white);
+  background: var(--cream);
   border: 1px solid rgba(201,168,76,0.2);
   border-radius: 50px;
   padding: 32px 20px;
@@ -1220,7 +1220,7 @@ body {
   line-height: 1.5;
 }
 .gift-sub {
-  font-size: 1rem;
+  font-size: 1.4rem;
   color: rgba(250,246,239,0.7);
   line-height: 1.8;
 }
