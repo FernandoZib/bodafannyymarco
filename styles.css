@@ -1340,7 +1340,7 @@ body {
   gap: 24px;
 }
 .hotel-card {
-  background: #E2E2E2;
+  background: var(--cream);
   border: 1px solid rgba(201,168,76,0.2);
   border-radius: 50px;
   padding: 32px 20px;
