@@ -34,6 +34,11 @@ body {
   line-height: 1.7;
 }
 
+.front-image {
+    position: relative; /* Required for z-index to work */
+    z-index: 10;        /* Higher value brings it to the front */
+}
+
 #petalos-canvas {
   position: fixed;
   top: 0;
