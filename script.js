@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateCountdown, 1000);
 
   /* ─────────────────────────────────────────
-     5. CARRUSEL
+     5. CARRUSEL  (optimizado para móvil)
   ───────────────────────────────────────── */
   const track      = document.getElementById('carouselTrack');
   const prevBtn    = document.getElementById('prevBtn');
@@ -151,34 +151,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentSlide = 0;
   let autoTimer    = null;
+  let isAnimating  = false;   // evita clicks dobles durante la transición
+  let cachedSlides = null;    // evita re-query al DOM en cada frame
 
-  function getSlides () { return track ? track.querySelectorAll('.carousel-slide') : []; }
+  // ── GPU hint en el track desde el principio ──
+  if (track) {
+    track.style.willChange = 'transform';
+    track.style.transform  = 'translateX(0)';   // fuerza capa compositing
+  }
+
+  function getSlides () {
+    if (!cachedSlides) cachedSlides = track ? Array.from(track.querySelectorAll('.carousel-slide')) : [];
+    return cachedSlides;
+  }
+
+  // ── Carga diferida: sólo el slide actual y sus vecinos ──
+  function loadAdjacentImages (index) {
+    const slides = getSlides();
+    const len    = slides.length;
+    const toLoad = [index, (index + 1) % len, (index - 1 + len) % len];
+
+    toLoad.forEach(i => {
+      const img = slides[i].querySelector('img[data-src]');
+      if (img) {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      }
+    });
+  }
 
   function buildDots () {
     if (!dotsWrap) return;
-    dotsWrap.innerHTML = '';
+    const frag = document.createDocumentFragment();  // un solo reflow
     getSlides().forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
       dot.setAttribute('aria-label', `Foto ${i + 1}`);
       dot.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(dot);
+      frag.appendChild(dot);
     });
+    dotsWrap.appendChild(frag);
   }
+
+  const allDots = () => dotsWrap.querySelectorAll('.carousel-dot');
 
   function goTo (index) {
     const slides = getSlides();
-    if (!slides.length) return;
+    if (!slides.length || isAnimating) return;
 
-    currentSlide = (index + slides.length) % slides.length;
+    isAnimating   = true;
+    currentSlide  = (index + slides.length) % slides.length;
+
+    // Una sola escritura al DOM para mover el track
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-    // Actualizar dots
-    dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === currentSlide);
-    });
+    // Actualizar dots en lote
+    allDots().forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+
+    // Pre-cargar imágenes del siguiente y anterior
+    loadAdjacentImages(currentSlide);
 
     restartAuto();
+
+    // Liberar el bloqueo cuando termine la transición CSS (0.55 s)
+    setTimeout(() => { isAnimating = false; }, 580);
   }
 
   function restartAuto () {
@@ -189,17 +225,33 @@ document.addEventListener('DOMContentLoaded', () => {
   if (prevBtn) prevBtn.addEventListener('click', () => goTo(currentSlide - 1));
   if (nextBtn) nextBtn.addEventListener('click', () => goTo(currentSlide + 1));
 
-  // Swipe táctil
+  // ── Swipe táctil — sin llamar preventDefault para no bloquear scroll ──
   if (track) {
-    let startX = 0;
-    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend',   e => {
+    let startX = 0, startY = 0, isSwiping = false;
+
+    track.addEventListener('touchstart', e => {
+      startX    = e.touches[0].clientX;
+      startY    = e.touches[0].clientY;
+      isSwiping = false;
+    }, { passive: true });
+
+    track.addEventListener('touchmove', e => {
+      // Determinar si el gesto es más horizontal que vertical
+      if (!isSwiping) {
+        const dx = Math.abs(e.touches[0].clientX - startX);
+        const dy = Math.abs(e.touches[0].clientY - startY);
+        isSwiping = dx > dy;
+      }
+    }, { passive: true });
+
+    track.addEventListener('touchend', e => {
       const dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 40) goTo(currentSlide + (dx < 0 ? 1 : -1));
-    });
+      if (isSwiping && Math.abs(dx) > 40) goTo(currentSlide + (dx < 0 ? 1 : -1));
+    }, { passive: true });
   }
 
   buildDots();
+  loadAdjacentImages(0);  // carga foto 0, 1 y última al arrancar
   restartAuto();
 
   /* ─────────────────────────────────────────
