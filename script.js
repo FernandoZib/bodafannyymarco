@@ -342,6 +342,114 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ─────────────────────────────────────────
+     9. LIGHTBOX / MODAL DE GALERÍA
+  ───────────────────────────────────────── */
+  const lightboxOverlay = document.getElementById('lightboxOverlay');
+  const lightboxImg     = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxCounter = document.getElementById('lightboxCounter');
+  const lightboxClose   = document.getElementById('lightboxClose');
+  const lightboxPrev    = document.getElementById('lightboxPrev');
+  const lightboxNext    = document.getElementById('lightboxNext');
+
+  let lightboxIndex = 0;
+
+  // Recopila datos de las diapositivas del carrusel
+  function getSlideData () {
+    return Array.from(track.querySelectorAll('.carousel-slide')).map(slide => {
+      const img     = slide.querySelector('img');
+      const caption = slide.querySelector('.polaroid-caption');
+      return {
+        src:     img ? (img.src || img.dataset.src || '') : '',
+        alt:     img ? (img.alt || '') : '',
+        caption: caption ? caption.textContent.trim() : ''
+      };
+    });
+  }
+
+  function openLightbox (index) {
+    const slides = getSlideData();
+    if (!slides.length) return;
+    lightboxIndex = (index + slides.length) % slides.length;
+    updateLightboxContent(slides, false);
+    lightboxOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox () {
+    lightboxOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function updateLightboxContent (slides, animate) {
+    const data = slides[lightboxIndex];
+    if (animate) {
+      lightboxImg.classList.add('changing');
+      setTimeout(() => {
+        lightboxImg.src              = data.src;
+        lightboxImg.alt              = data.alt;
+        lightboxCaption.textContent  = data.caption;
+        lightboxImg.classList.remove('changing');
+      }, 180);
+    } else {
+      lightboxImg.src             = data.src;
+      lightboxImg.alt             = data.alt;
+      lightboxCaption.textContent = data.caption;
+    }
+    lightboxCounter.textContent = `${lightboxIndex + 1} / ${slides.length}`;
+  }
+
+  function lightboxGoTo (delta) {
+    const slides = getSlideData();
+    lightboxIndex = (lightboxIndex + delta + slides.length) % slides.length;
+    // Sincroniza también el carrusel principal
+    goTo(lightboxIndex);
+    updateLightboxContent(slides, true);
+  }
+
+  // Clic en cualquier polaroid abre el lightbox
+  if (track) {
+    track.addEventListener('click', e => {
+      const slide = e.target.closest('.carousel-slide');
+      if (!slide) return;
+      const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+      const idx    = slides.indexOf(slide);
+      if (idx !== -1) openLightbox(idx);
+    });
+  }
+
+  if (lightboxClose)  lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxPrev)   lightboxPrev.addEventListener('click', () => lightboxGoTo(-1));
+  if (lightboxNext)   lightboxNext.addEventListener('click', () => lightboxGoTo(1));
+
+  // Cerrar al hacer clic en el fondo oscuro
+  if (lightboxOverlay) {
+    lightboxOverlay.addEventListener('click', e => {
+      if (e.target === lightboxOverlay) closeLightbox();
+    });
+  }
+
+  // Teclado: flechas y Escape
+  document.addEventListener('keydown', e => {
+    if (!lightboxOverlay || !lightboxOverlay.classList.contains('active')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  lightboxGoTo(-1);
+    if (e.key === 'ArrowRight') lightboxGoTo(1);
+  });
+
+  // Swipe táctil en el lightbox
+  if (lightboxOverlay) {
+    let lbStartX = 0;
+    lightboxOverlay.addEventListener('touchstart', e => {
+      lbStartX = e.touches[0].clientX;
+    }, { passive: true });
+    lightboxOverlay.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - lbStartX;
+      if (Math.abs(dx) > 50) lightboxGoTo(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  }
+
 });
 
 
