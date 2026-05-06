@@ -336,3 +336,39 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         animate();
     }
+
+    // --- EFECTO DE ESCRITURA (TYPEWRITER) ---
+    // Se mantiene intacto como lo tenías, funcionando con su propio observer
+    function setupTypewriter(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        
+        // Guardamos el contenido original antes de limpiar
+        const textoOriginal = el.innerHTML;
+        const textoPlano = textoOriginal.replace(/<br>/g, '\n').replace(/<[^>]*>/g, '');
+        
+        // Reservamos el espacio para que no haya saltos visuales
+        el.style.minHeight = el.offsetHeight + 'px';
+        el.innerHTML = '';
+        
+        let i = 0;
+        const escribir = () => {
+            if (i < textoPlano.length) {
+                el.innerHTML += textoPlano.charAt(i) === '\n' ? '<br>' : textoPlano.charAt(i);
+                i++; 
+                setTimeout(escribir, 40);
+            }
+        };
+
+        const typewriterObserver = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) { 
+                escribir(); 
+                typewriterObserver.unobserve(el); // Solo escribe una vez
+            }
+        }, { threshold: 0.3 });
+        
+        typewriterObserver.observe(el);
+    }
+
+    setupTypewriter('frase-final-texto');
+    setupTypewriter('hero-frase');
