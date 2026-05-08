@@ -74,6 +74,13 @@ body {
   display: inline-block;
 }
 
+.heartbeatbroch {
+  /* Animation: name duration timing-function iteration-count */
+  animation: beat 5s ease infinite;
+  align-items: center;
+  margin-left: -35px;
+}
+
 @keyframes beat {
   0% {
     transform: scale(1);
