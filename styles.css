@@ -1305,6 +1305,8 @@ body {
 /* ── VESTIMENTA ────────────────────────────── */
 .dresscode-section {
   background: var(--crimson-dk);
+  margin-bottom: -50px;  
+  margin-top: -50px;
 }
 .dresscode-tag {
   font-family: var(--font-display);
