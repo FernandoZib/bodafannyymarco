@@ -34,6 +34,10 @@ body {
   line-height: 1.7;
 }
 
+.padresn{
+  font-family: 'Playfair Display', serif;
+}
+
 .front-image {
     position: relative; /* Required for z-index to work */
     z-index: 10;        /* Higher value brings it to the front */
@@ -122,6 +126,7 @@ body {
   50% { transform: scale(1) rotate(180deg); opacity: 0.8; }
   100% { transform: scale(0) rotate(360deg); opacity: 0; }
 }
+
 
 /* ═══════════════════════════════════════════
    SOBRE / ENVELOPE SCREEN
@@ -768,7 +773,7 @@ body {
   margin-top: 10px;
 }
 .family-card {
-  background-color: rgba(255, 255, 255, 0.5); ;    
+  background-color: rgba(255, 255, 255, 0.6); ;    
   border: 1px solid rgba(201,168,76,0.25);
   padding: 36px 24px;
   position: relative;
@@ -779,13 +784,13 @@ body {
   box-shadow: 0 12px 40px rgba(93,43,42,0.12);
 }
 .family-card.padrinos {  
-  background-color: rgba(255, 255, 228, 0.5);   
+  background-color: rgba(255, 255, 228, 0.6);   
 }
 .family-icon {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--crimson-dk), var(--crimson-dk));
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -804,6 +809,57 @@ body {
   font-size: 1.55rem;
   color: black;
   line-height: 1.6;
+}
+
+
+
+.family-names-row {
+  display: flex;
+  align-items: center;
+  /* Esto empuja los elementos a los extremos y deja el & al centro */
+  justify-content: space-between; 
+  gap: 10px;
+  width: 100%;
+  max-width: 500px; /* Ajusta según el ancho de tus tarjetas */
+  margin: 15px auto 0;
+}
+
+.padresn {
+  margin: 0 !important;
+  /* Forzamos alineación de texto según su posición */
+  flex: 1;
+}
+
+/* El primer nombre a la izquierda */
+.family-names-row .padresn:first-child {
+  text-align: center;
+}
+
+/* El segundo nombre a la derecha */
+.family-names-row .padresn:last-child {
+  text-align: center;
+}
+
+.family-amp {
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  font-weight: bold;
+  min-width: 30px; /* Espacio fijo para el símbolo */
+  text-align: center;
+}
+
+/* En móviles, si el nombre es muy largo, es mejor que se apilen */
+@media (max-width: 100px) {
+  .family-names-row {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .family-names-row .padresn:first-child,
+  .family-names-row .padresn:last-child {
+    text-align: center;
+  }
 }
 
 /* ── GALERÍA / CARRUSEL POLAROID ───────────── */
