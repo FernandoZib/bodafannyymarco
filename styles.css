@@ -3,7 +3,7 @@
 ════════════════════════════════════════════ */
 :root {
   --crimson:    #8B1A1A;
-  --crimson-dk: #722F37;
+  --crimson-dk: #722F37;  
   --crimson-lt: #B84040;
   --gold:       #C9A84C;
   --gold-lt:    #E8D09A;
@@ -97,6 +97,30 @@ body {
   100% {
     transform: scale(1);
   }
+}
+
+/* Contenedor que tendrá los brillos */
+.sparkle-bg {
+  position: relative;
+  overflow: hidden; /* Evita que los brillos se salgan del div */
+}
+
+/* La partícula individual */
+.sparkle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+  animation: sparkle-anim linear infinite;
+  opacity: 0;
+}
+
+@keyframes sparkle-anim {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1) rotate(180deg); opacity: 0.8; }
+  100% { transform: scale(0) rotate(360deg); opacity: 0; }
 }
 
 /* ═══════════════════════════════════════════
@@ -1451,7 +1475,7 @@ body {
 
 /* ── CIERRE ────────────────────────────────── */
 .closing-section {
-  background: var(--white);
+  background: var(--cream);
   padding: 100px 20px;
 }
 .closing-ornament {
