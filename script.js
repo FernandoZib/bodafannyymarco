@@ -532,3 +532,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupTypewriter('frase-final-texto');
     setupTypewriter('hero-frase');
+
+
+    function initSparkles() {
+  const containers = document.querySelectorAll('.sparkle-bg');
+  
+  containers.forEach(container => {
+    // Ajusta el número de brillos según el tamaño del contenedor
+    const count = 15; 
+    
+    for (let i = 0; i < count; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      
+      // Posición y tamaño aleatorio
+      const size = Math.random() * 4 + 2;
+      const posX = Math.random() * 100;
+      const posY = Math.random() * 100;
+      const delay = Math.random() * 5;
+      const duration = Math.random() * 3 + 2;
+
+      sparkle.style.width = `${size}px`;
+      sparkle.style.height = `${size}px`;
+      sparkle.style.left = `${posX}%`;
+      sparkle.style.top = `${posY}%`;
+      sparkle.style.animationDelay = `${delay}s`;
+      sparkle.style.animationDuration = `${duration}s`;
+      
+      // Color dorado ocasional para variar
+      if (Math.random() > 0.8) {
+        sparkle.style.background = '#C9A84C';
+        sparkle.style.boxShadow = '0 0 10px 2px rgba(201, 168, 76, 0.8)';
+      }
+
+      container.appendChild(sparkle);
+    }
+  });
+}
+
+// Llama a la función al cargar la invitación
+// Puedes poner esto dentro de tu initReveal() o al final del script
+initSparkles();
