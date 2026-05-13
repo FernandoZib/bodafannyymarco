@@ -629,3 +629,27 @@ function applyRandomShake() {
 document.addEventListener('DOMContentLoaded', () => {
     applyRandomShake();
 });
+
+
+/* --- PROTECCIÓN DE INTERFAZ --- */
+
+// 1. Bloquear Click Derecho
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+}, false);
+
+// 2. Bloquear atajos de teclado para Zoom (Ctrl + / Ctrl - / Ctrl Wheel)
+document.addEventListener('keydown', (e) => {
+    if (
+        e.ctrlKey && 
+        (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')
+    ) {
+        e.preventDefault();
+    }
+}, false);
+
+document.addEventListener('wheel', (e) => {
+    if (e.ctrlKey) {
+        e.preventDefault();
+    }
+}, { passive: false });
