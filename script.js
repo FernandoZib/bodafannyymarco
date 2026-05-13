@@ -622,7 +622,7 @@ function applyRandomShake() {
             img.classList.remove('shake-element');
         }, 500);
         
-    }, 2000); // Se ejecuta cada 3 segundos
+    }, 1500); // Se ejecuta cada 3 segundos
 }
 
 // Inicializar cuando el DOM esté listo
