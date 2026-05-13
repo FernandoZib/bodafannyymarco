@@ -570,6 +570,62 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 }
 
+
 // Llama a la función al cargar la invitación
 // Puedes poner esto dentro de tu initReveal() o al final del script
 initSparkles();
+
+
+function applyRandomShake() {
+    // Seleccionamos todas las imágenes con la clase 'shake-random'
+    const images = document.querySelectorAll('.shake-random');
+    
+    if (images.length === 0) return;
+
+    // Función para elegir una imagen al azar y agitarla
+    setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        const img = images[randomIndex];
+        
+        // Añadimos la clase de animación
+        img.classList.add('shake-element');
+        
+        // La quitamos después de que termine la animación (0.5s)
+        setTimeout(() => {
+            img.classList.remove('shake-element');
+        }, 500);
+        
+    }, 3000); // Se ejecuta cada 3 segundos
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    applyRandomShake();
+});
+
+function applyRandomShake() {
+    // Seleccionamos todas las imágenes con la clase 'shake-random'
+    const images = document.querySelectorAll('.shake-random');
+    
+    if (images.length === 0) return;
+
+    // Función para elegir una imagen al azar y agitarla
+    setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        const img = images[randomIndex];
+        
+        // Añadimos la clase de animación
+        img.classList.add('shake-element');
+        
+        // La quitamos después de que termine la animación (0.5s)
+        setTimeout(() => {
+            img.classList.remove('shake-element');
+        }, 500);
+        
+    }, 2000); // Se ejecuta cada 3 segundos
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    applyRandomShake();
+});
