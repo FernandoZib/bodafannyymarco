@@ -3,7 +3,7 @@
 ════════════════════════════════════════════ */
 :root {
   --crimson:    #8B1A1A;
-  --crimson-dk: #722F37;  
+  --crimson-dk: #5F1616;  
   --crimson-lt: #B84040;
   --gold:       #C9A84C;
   --gold-lt:    #E8D09A;
@@ -32,6 +32,27 @@ body {
   color: var(--dark);
   overflow-x: hidden;
   line-height: 1.7;
+}
+
+/* Definición de la animación discreta */
+@keyframes subtleShake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(1px, 1px) rotate(0.5deg); }
+  50% { transform: translate(-1px, -1px) rotate(-0.5deg); }
+  75% { transform: translate(1px, -1px) rotate(0.2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Clase que activa la agitación */
+.shake-element {
+  animation: subtleShake 0.5s ease-in-out;
+  /* Aseguramos que la transición de retorno sea suave */
+  transition: transform 0.3s ease;
+}
+
+/* Opcional: Si quieres que se agite solo al pasar el mouse */
+.shake-hover:hover {
+  animation: subtleShake 0.6s ease-in-out infinite;
 }
 
 .padresn{
@@ -281,8 +302,7 @@ body {
   position: relative;
   width: 100%;
   height: min(160px, 45vw);
-  filter: drop-shadow(0 10px 28px rgba(80,20,20,0.35));
-  animation: envFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 10px 28px rgba(80,20,20,0.35));  
 }
 
 @keyframes envFloat {
