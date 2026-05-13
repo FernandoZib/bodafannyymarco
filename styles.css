@@ -1833,3 +1833,23 @@ body {
   .gifts-content { padding: 36px 20px; }
   .hero-verse { padding: 20px; }
 }
+
+/* Bloquear selección de texto en todo el sitio */
+body {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE10+/Edge */
+  user-select: none;         /* Estándar */
+  
+  /* Evita el "pull-to-refresh" en móviles que puede romper animaciones */
+  overscroll-behavior-y: contain;
+  
+  /* Sugerencia para evitar zoom por doble toque en algunos navegadores */
+  touch-action: manipulation;
+}
+
+/* Si quieres que los campos de formulario (si añades alguno) SÍ permitan escribir */
+input, textarea {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
