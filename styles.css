@@ -1505,7 +1505,7 @@ body {
 .gifts-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, #1a0505 0%, #3a1010 100%);
+  background: #5F1616;
 }
 .gifts-bg::before {
   content: '';
@@ -1514,8 +1514,9 @@ body {
   background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
 }
 .gifts-content {
-  background: rgba(255,255,255,0.05);
+  background: var(--crimson-dk);
   border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 10px;
   padding: 50px 40px;
   backdrop-filter: blur(4px);
 }
