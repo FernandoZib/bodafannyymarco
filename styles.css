@@ -788,20 +788,12 @@ background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
   gap: 24px;
   margin-top: 10px;
 }
-.family-card {
-  background-color: rgba(255, 255, 255, 0.6); ;    
-  border: 1px solid rgba(201,168,76,0.25);
+.family-card {  
   padding: 36px 24px;
   position: relative;
-  transition: transform 0.3s, box-shadow 0.3s;
 }
-.family-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(93,43,42,0.12);
-}
-.family-card.padrinos {  
-  background-color: rgba(255, 255, 228, 0.6);   
-}
+
+
 .family-icon {
   width: 48px;
   height: 48px;
@@ -817,13 +809,15 @@ background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
 .family-card h3 {
   font-family: var(--font-display);
   font-size: 1.8rem;
-  color: var(--crimson-dk);
+  color: var(--gold-lt);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   margin-bottom: 12px;
   font-weight: 600;
+  margin-bottom: -30px;
 }
 .family-card p {
   font-size: 1.55rem;
-  color: black;
+  color: white;
   line-height: 1.6;
 }
 
@@ -837,7 +831,7 @@ background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
   gap: 10px;
   width: 100%;
   max-width: 500px; /* Ajusta según el ancho de tus tarjetas */
-  margin: 15px auto 0;
+  margin: 25px auto 0;
 }
 
 .padresn {
@@ -864,6 +858,7 @@ background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
   font-weight: bold;
   min-width: 30px; /* Espacio fijo para el símbolo */
   text-align: center;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 /* En móviles, si el nombre es muy largo, es mejor que se apilen */
