@@ -735,13 +735,9 @@ body {
 
 /* ── BIENVENIDA ────────────────────────────── */
 .welcome-section {
-  background:  repeating-linear-gradient(
-    45deg,
-    rgba(0, 0, 0, 0.05) 0px,
-    rgba(0, 0, 0, 0.05) 1px,
-    transparent 1px,
-    transparent 8px
-  ), var(--crimson-dk);
+
+
+background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
 }
 .welcome-section .section-inner {
   border: 1px solid rgba(201,168,76,0.25);
@@ -1270,7 +1266,7 @@ body {
 
 /* ── LUGARES ───────────────────────────────── */
 .venues-section {
-  background: linear-gradient(180deg, var(--crimson-dk) 0%, var(--crimson-dk) 100%);
+  background: var(--crimson-dk);
   margin-top: -50px;
 }
 .venues-grid {
@@ -1411,7 +1407,7 @@ body {
 
 /* ── HOSPEDAJE ─────────────────────────────── */
 .hotel-section {
-  background: var(--crimson-dk) ;
+ background: linear-gradient(var(--crimson-dk) 0%, #3a0e0e 100%);
 }
 .hotel-intro {
   font-size: 1.5rem;
@@ -1458,7 +1454,7 @@ body {
 /* ── REGALOS ───────────────────────────────── */
 .gifts-section {
   position: relative;
-  padding: 80px 20px;
+  padding: 80px 20px;  
 }
 .gifts-bg {
   position: absolute;
