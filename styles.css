@@ -884,7 +884,8 @@ body {
 
 /* ── GALERÍA / CARRUSEL POLAROID ───────────── */
 .gallery-section {
-  background: linear-gradient(160deg, var(--crimson-dk) 0%, #3a0e0e 100%);
+  /* Invertido: El oscuro primero, el claro después */
+  background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
   padding: 100px 20px;
   overflow: hidden;
 }
@@ -1095,95 +1096,32 @@ body {
 }
 
 /* ── CONTADOR ──────────────────────────────── */
-.countdown-section {
-  padding: 80px 20px;
-  position: relative;
-  overflow: hidden;
-}
+.countdown-section { padding: 80px 20px; position: relative; overflow: hidden; }
 .countdown-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(160deg, var(--crimson-dk) 0%, #3a0e0e 100%);
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, var(--dark-bg) 0%, #1e0500 100%);
 }
 .countdown-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    45deg, transparent, transparent 30px,
-    rgba(255,255,255,0.02) 30px, rgba(255,255,255,0.02) 31px
-  );
+  content: ''; position: absolute; inset: 0;
+  background:linear-gradient(var(--crimson-dk) 0%, #3a0e0e 100%);
 }
-.countdown-bg::after {
-  content: '❧';
-  position: absolute;
-  font-size: 40vw;
-  color: rgba(255,255,255,0.015);
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  pointer-events: none;
-}
-
-.countdown-grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-}
+.countdown-grid { display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:30px; }
 .countdown-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(201,168,76,0.3);
-  padding: 20px 24px;
-  min-width: 80px;
-  backdrop-filter: blur(4px);
+  display:flex;flex-direction:column;align-items:center;
+  background:rgba(255,255,255,0.05);
+  border:0.5px solid rgba(201,168,76,0.35);
+  padding:20px 24px;min-width:80px;
+  backdrop-filter:blur(4px);
+  position: relative;
 }
-.countdown-num {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
-  color: var(--gold-lt);
-  font-weight: 400;
-  line-height: 1;
-  min-width: 2ch;
-  text-align: center;
-  transition: color 0.3s;
-}
-.countdown-num.flip {
-  animation: numFlip 0.4s ease;
-}
-@keyframes numFlip {
-  0%   { transform: translateY(0); opacity: 1; }
-  50%  { transform: translateY(-8px); opacity: 0; }
-  51%  { transform: translateY(8px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-.countdown-label {
-  font-family: var(--font-ui);
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(232,208,154,0.6);
-  margin-top: 6px;
-}
-.countdown-sep {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  color: var(--gold);
-  margin-bottom: 24px;
-  opacity: 0.6;
-}
-.countdown-date {
-  font-family: var(--font-ui);
-  font-size: 0.9rem;
-  letter-spacing: 0.3em;
-  color: rgba(232,208,154,0.7);
-  text-transform: uppercase;
-}
+.countdown-box::before,.countdown-box::after { content:'';position:absolute;width:10px;height:10px;border-color:rgba(201,168,76,0.4);border-style:solid;pointer-events:none; }
+.countdown-box::before { top:5px;left:5px;border-width:1px 0 0 1px; }
+.countdown-box::after  { bottom:5px;right:5px;border-width:0 1px 1px 0; }
+.countdown-num { font-family:var(--font-display);font-size:clamp(2.2rem,6vw,3.5rem);color:var(--gold-lt);font-weight:400;line-height:1;min-width:2ch;text-align:center;transition:color 0.3s; }
+.countdown-num.flip { animation:numFlip 0.4s ease; }
+@keyframes numFlip { 0% { transform:translateY(0);opacity:1; } 50% { transform:translateY(-8px);opacity:0; } 51% { transform:translateY(8px);opacity:0; } 100% { transform:translateY(0);opacity:1; } }
+.countdown-label { font-family:var(--font-ui);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(232,208,154,0.6);margin-top:6px; }
+.countdown-sep { font-family:var(--font-display);font-size:2rem;color:var(--gold);margin-bottom:24px;opacity:0.6; }
 
 /* ── ITINERARIO ────────────────────────────── */
 .itinerary-section {
