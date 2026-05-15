@@ -1757,8 +1757,7 @@ background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
   .tl-item::after,
   .tl-item:nth-child(even)::after { display: none; }
   .countdown-box { padding: 14px 16px; min-width: 66px; }
-  .carousel-slide { height: 260px; }
-  .dresscode-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .carousel-slide { height: 260px; }  
   .dc-figure { width: 90px; }
   .gifts-content { padding: 36px 20px; }
   .hero-verse { padding: 20px; }
