@@ -1453,7 +1453,7 @@ background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
 .gifts-bg {
   position: absolute;
   inset: 0;
-  background: #5F1616;
+  background: linear-gradient(var(--crimson-dk) 0%, #3a0e0e 100%);
 }
 .gifts-bg::before {
   content: '';
@@ -1486,6 +1486,7 @@ background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
   font-size: 1.4rem;
   color: rgba(250,246,239,0.7);
   line-height: 1.8;
+  color: white;
 }
 
 /* ── CIERRE ────────────────────────────────── */
