@@ -1735,6 +1735,216 @@ background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
 }
 
 /* ══════════════════════════════════════════════
+   TARJETA DE INVITACIÓN (estilo placa)
+══════════════════════════════════════════════ */
+.invitation-card-section {
+  background: var(--crimson-dk);
+  padding: 80px 20px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inv-card-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 800px;
+}
+
+/* ── Sombra difusa de suelo ── */
+.inv-card-wrap::before {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 40px;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(60, 10, 18, 0.5) 0%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Capa trasera: grosor lateral ── */
+.inv-card-plaque::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #3a0d14 0%, #4e1820 50%, #3a0d14 100%);
+  clip-path: polygon(
+    12% 0%, 88% 0%,
+    100% 6%, 100% 94%,
+    88% 100%, 12% 100%,
+    0% 94%, 0% 6%
+  );
+  transform: translate(6px, 10px);
+  z-index: -2;
+}
+
+/* ── Capa media: reverso con tono medio ── */
+.inv-card-plaque::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #4e1820 0%, #5e2028 50%, #4e1820 100%);
+  clip-path: polygon(
+    12% 0%, 88% 0%,
+    100% 6%, 100% 94%,
+    88% 100%, 12% 100%,
+    0% 94%, 0% 6%
+  );
+  transform: translate(3px, 5px);
+  z-index: -1;
+}
+
+.inv-card-plaque {
+  position: relative;
+  width: min(300px, 88vw);
+  z-index: 1;
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,0.10) 0%,
+      transparent 40%,
+      transparent 65%,
+      rgba(0,0,0,0.18) 100%
+    ),
+    #722F37;
+  clip-path: polygon(
+    12% 0%, 88% 0%,
+    100% 6%, 100% 94%,
+    88% 100%, 12% 100%,
+    0% 94%, 0% 6%
+  );
+  padding: 36px 28px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    inset 2px 2px 8px rgba(255,255,255,0.10),
+    inset -2px -2px 8px rgba(0,0,0,0.25);
+}
+
+.inv-card-inner-border {
+  width: 100%;
+  border: 1.5px solid rgba(255,255,255,0.28);
+  padding: 22px 18px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.inv-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+  margin: 6px 0;
+}
+
+.inv-honor-text {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.88);
+  text-transform: uppercase;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.inv-script-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.2rem, 9vw, 2.9rem);
+  color: #ffffff;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.15;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.15),
+    0 -1px 0 rgba(0,0,0,0.2),
+    0 3px 10px rgba(0,0,0,0.4);
+  margin: 2px 0;
+}
+
+.inv-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 85%;
+  margin: 4px 0;
+}
+.inv-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+}
+.inv-divider-ornament {
+  font-size: 0.55rem;
+  color: #C9A84C;
+  line-height: 1;
+}
+
+.inv-month {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.inv-date-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  margin: 4px 0 6px;
+}
+
+.inv-day-label,
+.inv-year-label {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: #E8D09A;
+  text-transform: uppercase;
+  border: 1px solid #C9A84C;
+  padding: 3px 8px;
+  line-height: 1.8;
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.inv-day-label { border-right: none; }
+.inv-year-label { border-left: none; }
+
+.inv-day-num {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 10vw, 3.2rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  padding: 0 14px;
+  text-shadow:
+    0 2px 0 rgba(255,255,255,0.12),
+    0 -1px 0 rgba(0,0,0,0.25),
+    2px 5px 12px rgba(0,0,0,0.5);
+}
+
+.inv-city {
+  font-family: var(--font-ui);
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* ══════════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════════ */
 @media (max-width: 600px) {
