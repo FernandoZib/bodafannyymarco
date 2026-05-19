@@ -252,7 +252,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   buildDots();
   loadAdjacentImages(0);  // carga foto 0, 1 y última al arrancar
-  restartAuto();
+
+  // ── Iniciar autoplay solo cuando el carrusel entra en pantalla ──
+  const carouselSection = document.getElementById('gallery');
+  if (carouselSection) {
+    const carouselObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Primera vez que entra: arrancar desde slide 0
+          currentSlide = 0;
+          track.style.transform = 'translateX(0)';
+          allDots().forEach((d, i) => d.classList.toggle('active', i === 0));
+          restartAuto();
+          carouselObserver.disconnect(); // solo se activa una vez
+        }
+      });
+    }, { threshold: 0.3 });
+    carouselObserver.observe(carouselSection);
+  } else {
+    restartAuto();
+  }
 
   /* ─────────────────────────────────────────
      6. BOTÓN DE MÚSICA
