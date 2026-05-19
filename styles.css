@@ -1453,7 +1453,7 @@ background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
 .gifts-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(var(--crimson-dk) 0%, #3a0e0e 100%);
+  background: var(--crimson-dk);
 }
 .gifts-bg::before {
   content: '';
@@ -1462,7 +1462,7 @@ background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
   background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
 }
 .gifts-content {
-  background: var(--crimson-dk);
+  background: linear-gradient(#3a0e0e 100%, var(--crimson-dk) 100%);
   border: 1px solid rgba(201,168,76,0.25);
   border-radius: 10px;
   padding: 50px 40px;
@@ -1491,7 +1491,8 @@ background: linear-gradient(#3a0e0e 0%, var(--crimson-dk) 100%);
 
 /* ── CIERRE ────────────────────────────────── */
 .closing-section {  
-  background: linear-gradient(160deg, #3a0e0e 0%, var(--crimson-dk) 100%);
+  /* Original: 160deg */
+background: linear-gradient(var(--crimson-dk) 0%, #3a0e0e 100%);
   padding: 100px 20px;
 }
 .closing-ornament {
