@@ -629,7 +629,7 @@ body {
   text-transform: uppercase;
   color: white;
   margin-bottom: 20px;
-  margin-top: -150px;
+  margin-top: -200px;
 }
 
 .hero-names {
@@ -643,13 +643,36 @@ body {
 .name-bride, .name-groom {
   display: block;
   color: var(--crimson-dk);  
+  font-weight: 100;
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  text-shadow:
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000,
+                -1px 0px 0 #000,
+                1px 0px 0 #000,
+                0px -1px 0 #000,
+                0px 1px 0 #000;
 }
+
+
 .ampersand {
   display: block;
-  font-size: 0.5em;
+  font-size: 0.8em;
   color: var(--gold);
-  font-style: italic;
-  line-height: 1.4;
+  line-height: 80%;
+    text-shadow:
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                2px 2px 0 #000,
+                -3px 0px 0 #000,
+                3px 0px 0 #000,
+                0px -3px 0 #000,
+                0px 3px 0 #000;
+}
 }
 
 .hero-divider {
